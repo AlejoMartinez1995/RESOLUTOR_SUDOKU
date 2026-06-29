@@ -82,7 +82,7 @@ HTML_SUDOKU = '''
             const inputs = grid.getElementsByTagName('input');
             let index = 0;
             for (let r = 0; r < 9; r++) {
-                for (let c = 0; c < 9; r++) { // Corrección para iterar correctamente sobre la matriz plana
+                for (let c = 0; c < 9; c++) { // <--- CORREGIDO: c++
                     inputs[index].value = tablero[r][c] !== 0 ? tablero[r][c] : '';
                     index++;
                 }
