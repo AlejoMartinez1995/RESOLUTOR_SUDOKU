@@ -1,12 +1,20 @@
 '''Una interfaz gráfica (GUI) que resuelve automáticamente los rompecabezas de Sudoku.'''
 
-import pygame
 import sys
 import time
 import numpy as np
 
-# Inicializamos Pygame
-pygame.init()
+try:
+    import pygame
+    PYGAME_INSTALADO = True
+    # Inicializamos Pygame solo si está disponible
+    pygame.init()
+except ImportError:
+    PYGAME_INSTALADO = False
+
+# Inicializamos Pygame solo si está disponible
+if PYGAME_INSTALADO:
+    pygame.init()
 
 # Configuramos la ventana
 WIDTH = 540
