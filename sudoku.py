@@ -7,20 +7,13 @@ import numpy as np
 try:
     import pygame
     PYGAME_INSTALADO = True
-    # Inicializamos Pygame solo si está disponible
     pygame.init()
 except ImportError:
     PYGAME_INSTALADO = False
 
-# Inicializamos Pygame solo si está disponible
-if PYGAME_INSTALADO:
-    pygame.init()
-
 # Configuramos la ventana
 WIDTH = 540
 HEIGHT = WIDTH + 50  # Espacio adicional para el texto de instrucciones
-WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Sudoku Solver")
 
 # Definimos colores
 WHITE = (255, 255, 255)
@@ -31,8 +24,15 @@ BLUE = (0, 0, 255)
 GRAY = (200, 200, 200)
 
 # Definimos la fuente
-FONT = pygame.font.SysFont('comicsans', 40)
-FONT_BUTTON = pygame.font.SysFont('comicsans', 30)
+if PYGAME_INSTALADO:
+    WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("Sudoku Solver")
+    FONT = pygame.font.SysFont('comicsans', 40)
+    FONT_BUTTON = pygame.font.SysFont('comicsans', 30)
+else:
+    WINDOW = None
+    FONT = None
+    FONT_BUTTON = None
 
 # Definimos el tablero de Sudoku (0 representa celdas vacías)
 board = [
