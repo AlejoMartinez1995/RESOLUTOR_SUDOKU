@@ -131,7 +131,7 @@ HTML_SUDOKU = '''
             .then(data => {
                 if (data.exito) {
                     setearTableroPlano(data.tablero.flat());
-                    statusDiv.innerText = "¡Sudoku Resuelto con tu lógica original!";
+                    statusDiv.innerText = "¡Sudoku Resuelto";
                 } else {
                     statusDiv.innerText = "Este Sudoku no tiene solución.";
                 }
