@@ -1,6 +1,5 @@
 '''
 Adaptador Web Real integrado con tu proyecto 'sudoku.py'.
-Usa exactamente tus funciones matemáticas is_valid y find_empty para resolver desde la web.
 '''
 from flask import Flask, render_template_string, request, jsonify
 import importlib
@@ -17,20 +16,19 @@ except ImportError:
     modulo_sudoku = None
 
 # =====================================================================
-# ALGORITMO BACKTRACKING WEB (REUTILIZA TUS FUNCIONES ORIGINALES)
+# ALGORITMO BACKTRACKING WEB
 # =====================================================================
 def resolver_web(matrix):
     """
-    Ejecuta el algoritmo usando tus funciones lógicas exactas.
-    Evitamos llamar a solve_with_backtracking() para que no se ejecute Pygame en Render.
+    Ejecuta el algoritmo.
     """
-    # Usamos tu función original para buscar casilleros vacíos
+    # Usamos función para buscar casilleros vacíos
     empty = modulo_sudoku.find_empty(matrix)
     if not empty:
         return True
     row, col = empty
 
-    # Probamos números del 1 al 9 usando tu regla de validación original
+    # Probamos números del 1 al 9 
     for num in range(1, 10):
         if modulo_sudoku.is_valid(matrix, num, (row, col)):
             matrix[row][col] = num
