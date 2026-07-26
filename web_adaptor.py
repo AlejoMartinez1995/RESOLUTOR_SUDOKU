@@ -18,7 +18,8 @@ try:
     if BASE_DIR not in sys.path:
         sys.path.insert(0, BASE_DIR)
     modulo_sudoku = importlib.import_module(NOMBRE_ARCHIVO_SUDOKU)
-except ImportError:
+except Exception as e:
+    print(f"Error al importar sudoku.py: {e}")
     modulo_sudoku = None
 
 def resolver_web(matrix):
@@ -670,13 +671,18 @@ def home():
 
 @app.route('/api/resolver', methods=['POST'])
 def resolver_api():
-    data = request.get_json()
-    tablero_web = data.get('tablero')
-
     if not modulo_sudoku:
         return jsonify({"exito": False, "mensaje": "No se pudo importar sudoku.py"}), 500
 
     try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"exito": False, "error": "No JSON data received"}), 400
+            
+        tablero_web = data.get('tablero')
+        if not tablero_web:
+            return jsonify({"exito": False, "error": "No board data received"}), 400
+
         copia_tablero = [fila[:] for fila in tablero_web]
         ha_resuelto = resolver_web(copia_tablero)
         

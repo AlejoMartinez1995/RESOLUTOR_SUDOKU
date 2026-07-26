@@ -6,7 +6,6 @@ import time
 try:
     import pygame
     PYGAME_INSTALADO = True
-    pygame.init()
 except ImportError:
     PYGAME_INSTALADO = False
 
@@ -23,7 +22,8 @@ BLUE = (0, 0, 255)
 GRAY = (200, 200, 200)
 
 # Definimos la fuente
-if PYGAME_INSTALADO:
+if PYGAME_INSTALADO and __name__ == "__main__":
+    pygame.init()
     WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Sudoku Solver")
     FONT = pygame.font.SysFont('comicsans', 40)
