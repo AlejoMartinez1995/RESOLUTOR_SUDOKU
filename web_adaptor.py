@@ -414,9 +414,6 @@ HTML_SUDOKU = '''
             document.getElementById('status').innerText = "";
         }
 
-        // Cargar por defecto el nivel fácil
-        cargarPreset();
-
         function updateSpeedText() {
             const val = document.getElementById('speed-slider').value;
             document.getElementById('speed-text').innerText = `${val}ms`;
@@ -659,6 +656,9 @@ HTML_SUDOKU = '''
             document.getElementById('presets').value = 'empty';
             document.getElementById('status').innerText = "";
         }
+
+        // Cargar por defecto el nivel fácil
+        cargarPreset();
     </script>
 </body>
 </html>
